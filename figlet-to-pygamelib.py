@@ -82,10 +82,10 @@ parser.add_argument(
 )
 
 parser.add_argument(
-    "--test",
+    "--preview",
     action=argparse.BooleanOptionalAction,
-    default=False,
-    help="Show a test rendering of the freshly created font.",
+    default=True,
+    help="Show a preview rendering of the freshly created font.",
 )
 
 parser.add_argument(
@@ -187,7 +187,7 @@ with open(
 
 print("done")
 
-if args.test:
+if args.preview:
     print("Here is a test of the font:")
     s = engine.Screen(height=config["height"] * 3 + 11)
     t = base.Text(
