@@ -214,7 +214,31 @@ if args.test:
         "fg_color",
         "bg_color",
     ]:
-        s.place(f"{key}: {config[key]}", offset, 0)
+        k = base.Text(f"{key}:", core.Color(0, 255, 255), style=constants.BOLD)
+        s.place(k, offset, 0)
+        s.place(f"{config[key]}", offset, k.length + 1)
         offset += 1
-    s.place(f"Space width: {space_desired_width}", offset, 0)
+    k = base.Text("Space width:", core.Color(0, 255, 255), style=constants.BOLD)
+    s.place(k, offset, 0)
+    s.place(f"{space_desired_width}", offset, k.length + 1)
     s.update()
+else:
+    print(
+        base.Text(
+            "Configuration values of the font:",
+            core.Color(0, 255, 50),
+            style=constants.UNDERLINE,
+        )
+    )
+    for key in [
+        "scalable",
+        "monospace",
+        "colorable",
+        "height",
+        "horizontal_spacing",
+        "vertical_spacing",
+        "fg_color",
+        "bg_color",
+    ]:
+        k = base.Text(f"{key}:", core.Color(0, 255, 255), style=constants.BOLD)
+        print(f"{k}: {config[key]}")
