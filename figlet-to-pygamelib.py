@@ -82,6 +82,24 @@ parser.add_argument(
 )
 
 parser.add_argument(
+    "--horizontal-spacing",
+    type=int,
+    action="store",
+    required=False,
+    default=0,
+    help="Specify the horizontal spacing between glyphs.",
+)
+
+parser.add_argument(
+    "--vertical-spacing",
+    type=int,
+    action="store",
+    required=False,
+    default=0,
+    help="Specify the vertical spacing between glyphs.",
+)
+
+parser.add_argument(
     "--preview",
     action=argparse.BooleanOptionalAction,
     default=True,
@@ -99,8 +117,8 @@ config = {
     "monospace": False,
     "colorable": True,
     "height": 11,
-    "horizontal_spacing": 0,
-    "vertical_spacing": 0,
+    "horizontal_spacing": args.horizontal_spacing,
+    "vertical_spacing": args.vertical_spacing,
     "fg_color": {"red": 255, "green": 255, "blue": 255},
     "bg_color": None,
     "glyphs_map": {},
@@ -189,13 +207,13 @@ print("done")
 
 if args.preview:
     print("Here is a test of the font:")
-    s = engine.Screen(height=config["height"] * 3 + 11)
+    s = engine.Screen(height=config["height"] * 3 + 3 * config["vertical_spacing"] + 11)
     t = base.Text(
         f"Test of the:\nfiglet-{font_name}\nfont",
         font=core.Font(f"figlet-{font_name}", [f"{output_dir}/pygamelib/assets/"]),
     )
     s.place(t, 0, 0)
-    offset = config["height"] * 3 + 1
+    offset = config["height"] * 3 + 3 * config["vertical_spacing"] + 1
     s.place(
         base.Text(
             "Configuration values of the font:",
