@@ -180,11 +180,12 @@ with open(
 
 print("done")
 
-print("Here is a test of the font:")
-s = engine.Screen(height=config["height"] * 3)
-t = base.Text(
-    f"Test of the:\nfiglet-{font_name}\nfont",
-    font=core.Font(f"figlet-{font_name}", [f"{output_dir}/pygamelib/assets/"]),
-)
-s.place(t, 0, 0)
-s.update()
+if args.test:
+    print("Here is a test of the font:")
+    s = engine.Screen(height=config["height"] * 3)
+    t = base.Text(
+        f"Test of the:\nfiglet-{font_name}\nfont",
+        font=core.Font(f"figlet-{font_name}", [f"{output_dir}/pygamelib/assets/"]),
+    )
+    s.place(t, 0, 0)
+    s.update()
