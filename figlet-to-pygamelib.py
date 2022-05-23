@@ -1,6 +1,6 @@
 from pyfiglet import Figlet
 from pygamelib.gfx import core
-from pygamelib import base, engine
+from pygamelib import base, engine, constants
 import os
 import json
 import argparse
@@ -122,13 +122,17 @@ for wi in fl.Font.width:
     if fl.Font.width[wi] > maxwidth:
         maxwidth = fl.Font.width[wi]
 space_desired_width = maxwidth
-if args.space_width:
+if args.space_width and args.space_width >= 0:
     space_desired_width = args.space_width
+elif fl.Font.width[ord(" ")] <= fl.Font.width[ord("a")]:
+    space_desired_width = fl.Font.width[ord("a")]
 
 if args.monospace:
     config["monospace"] = True
     config["width"] = maxwidth
+    space_desired_width = maxwidth
 
+print(f"Space width: {space_desired_width}")
 
 fc = core.SpriteCollection()
 
@@ -138,15 +142,14 @@ print("Generating sprites...", end="")
 for char in fl.Font.chars:
     spr = None
     if chr(char) == " ":
-        if fl.Font.width[char] <= space_desired_width:
-            # This just doesn't work for our font system, so we create a bigger
-            # space.
-            spr = core.Sprite(
-                size=[space_desired_width, fl.Font.height],
-                default_sprixel=core.Sprixel(" "),
-                name=" ",
-            )
-    if spr is None:
+        # The space character is special. We want to make sure that it looks good and
+        # allow more customization to the user of that script.
+        spr = core.Sprite(
+            size=[space_desired_width, fl.Font.height],
+            default_sprixel=core.Sprixel(" "),
+            name=" ",
+        )
+    else:
         char_width = fl.Font.width[char]
         if args.monospace:
             char_width = config["width"]
@@ -184,10 +187,34 @@ print("done")
 
 if args.test:
     print("Here is a test of the font:")
-    s = engine.Screen(height=config["height"] * 3)
+    s = engine.Screen(height=config["height"] * 3 + 11)
     t = base.Text(
         f"Test of the:\nfiglet-{font_name}\nfont",
         font=core.Font(f"figlet-{font_name}", [f"{output_dir}/pygamelib/assets/"]),
     )
     s.place(t, 0, 0)
+    offset = config["height"] * 3 + 1
+    s.place(
+        base.Text(
+            "Configuration values of the font:",
+            core.Color(0, 255, 50),
+            style=constants.UNDERLINE,
+        ),
+        offset,
+        0,
+    )
+    offset += 1
+    for key in [
+        "scalable",
+        "monospace",
+        "colorable",
+        "height",
+        "horizontal_spacing",
+        "vertical_spacing",
+        "fg_color",
+        "bg_color",
+    ]:
+        s.place(f"{key}: {config[key]}", offset, 0)
+        offset += 1
+    s.place(f"Space width: {space_desired_width}", offset, 0)
     s.update()
