@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from pyfiglet import Figlet
 from pygamelib.gfx import core
 from pygamelib import base, engine, constants
