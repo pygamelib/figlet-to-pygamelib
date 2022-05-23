@@ -122,6 +122,8 @@ for wi in fl.Font.width:
     if fl.Font.width[wi] > maxwidth:
         maxwidth = fl.Font.width[wi]
 space_desired_width = maxwidth
+if args.space_width:
+    space_desired_width = args.space_width
 
 if args.monospace:
     config["monospace"] = True
