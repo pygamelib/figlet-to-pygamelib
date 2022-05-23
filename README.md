@@ -21,6 +21,11 @@ The script accept some options:
  - --space-width SPACE_WIDTH:
                         Specify the space character width. Sometimes the one in the Figlet font does not work/look good for the game. You can define the width of the space
                         character and test different values.
+ - --horizontal-spacing HORIZONTAL_SPACING:
+                        Specify the horizontal spacing between glyphs.
+ - --vertical-spacing VERTICAL_SPACING:
+                        Specify the vertical spacing between glyphs.
+
  - --preview, --no-preview:     Show a preview rendering of the freshly created font. (default: True)
 
 Let's see some notions in more details.
@@ -37,11 +42,14 @@ It is advised to document the validated scaling range.
 If you set your font to be monospace, the script will enforce the same width for all the glyph. At the moment, it uses
 the Figlet widest glyph as a reference.
 
-### Space width
+### Spacing
 
 Unfortunately, some default settings from the Figlet fonts don't work so well with the `pygamelib`. This is the case for
-the space. Some times, it just look too small or too big. Therefor, the --space-width is here to help.
+the SPACE glyph. Some times, it just look too small or too big. Therefor, the --space-width is here to help.
 When, you think that the spaces look weird you can fix them to a more suitable size.
+
+If the font looks too cramped or is not to your liking, you can use --horizontal-spacing or --vertical-spacing to add
+padding around a glyph. It is advised to leave the preview on when tweaking these parameters.
 
 ### Examples
 
@@ -74,6 +82,13 @@ Same thing but with a preview shown:
 
 This will produce the following output:
 ![Command output](images/doom_preview.png)
+
+And when we play with vertical and horizontal spacing:
+
+    figlet-to-pygamelib.py --output-directory dev_tests doom --space-width 3 --horizontal-spacing 3 --vertical-spacing 2
+
+This produces the following output:
+![Command output](images/doom_preview_spacing.png)
 
 ## Bugs
 
