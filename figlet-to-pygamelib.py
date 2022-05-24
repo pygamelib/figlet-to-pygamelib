@@ -71,6 +71,16 @@ parser.add_argument(
 )
 
 parser.add_argument(
+    "--name",
+    type=str,
+    action="store",
+    required=False,
+    default="",
+    help="Specify the name of the generated font. By default, it is "
+    "figlet-<font name>.",
+)
+
+parser.add_argument(
     "--space-width",
     type=int,
     action="store",
@@ -129,6 +139,10 @@ font_name = args.font_name
 output_dir = "."
 if args.output_directory:
     output_dir = args.output_directory
+
+generated_font_name = "figlet-" + font_name
+if args.name:
+    generated_font_name = args.name
 
 print(f"Loading font: {font_name}...", end="")
 fl = Figlet(font=font_name)
@@ -191,15 +205,15 @@ for char in fl.Font.chars:
     fc.add(spr)
 print("done")
 print("Writting files...", end="")
-os.makedirs(f"{output_dir}/pygamelib/assets/fonts/figlet-{font_name}", exist_ok=True)
-fc.to_json_file(f"{output_dir}/pygamelib/assets/fonts/figlet-{font_name}/glyphs.spr")
+os.makedirs(f"{output_dir}/pygamelib/assets/fonts/{generated_font_name}", exist_ok=True)
+fc.to_json_file(f"{output_dir}/pygamelib/assets/fonts/{generated_font_name}/glyphs.spr")
 with open(
-    f"{output_dir}/pygamelib/assets/fonts/figlet-{font_name}/config.json", "w"
+    f"{output_dir}/pygamelib/assets/fonts/{generated_font_name}/config.json", "w"
 ) as file:
     json.dump(config, file)
 
 with open(
-    f"{output_dir}/pygamelib/assets/fonts/figlet-{font_name}/Readme.md", "w"
+    f"{output_dir}/pygamelib/assets/fonts/{generated_font_name}/Readme.md", "w"
 ) as file:
     file.write(readme_tmpl)
 
@@ -209,8 +223,8 @@ if args.preview:
     print("Here is a test of the font:")
     s = engine.Screen(height=config["height"] * 3 + 3 * config["vertical_spacing"] + 11)
     t = base.Text(
-        f"Test of the:\nfiglet-{font_name}\nfont",
-        font=core.Font(f"figlet-{font_name}", [f"{output_dir}/pygamelib/assets/"]),
+        f"Test of the:\n{generated_font_name}\nfont",
+        font=core.Font(f"{generated_font_name}", [f"{output_dir}/pygamelib/assets/"]),
     )
     s.place(t, 0, 0)
     offset = config["height"] * 3 + 3 * config["vertical_spacing"] + 1
