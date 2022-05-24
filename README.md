@@ -18,6 +18,8 @@ The script accept some options:
  - --output-directory OUTPUT_DIRECTORY:
                         Specify the output directory. If set, all files generated will be store in that directory. If not, files are going to be stored in the current directory.
                         The entire directory structure will be created if it does not exist.
+ - --name NAME:         Specify the name of the generated font. By default, it is figlet-[font name].
+
  - --space-width SPACE_WIDTH:
                         Specify the space character width. Sometimes the one in the Figlet font does not work/look good for the game. You can define the width of the space
                         character and test different values.
