@@ -33,11 +33,11 @@ setuptools.setup(
         "Development Status :: 4 - Beta",
         "Environment :: Console",
         "Topic :: Terminals",
-        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+        "License :: OSI Approved :: Apache Software License",
         "Operating System :: OS Independent",
     ],
     project_urls={
-        "Documentation": "https://github.com/pygamelib/figlet-to-pygamelibl",
+        "Documentation": "https://github.com/pygamelib/figlet-to-pygamelib",
         "Source": "https://github.com/pygamelib/figlet-to-pygamelib",
         "Tracker": "https://github.com/pygamelib/figlet-to-pygamelib/issues",
     },
