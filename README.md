@@ -83,14 +83,14 @@ Same thing but with a preview shown:
     figlet-to-pygamelib.py --output-directory dev_tests doom --space-width 3
 
 This will produce the following output:
-![Command output](images/doom_preview.png)
+![Command output](https://raw.githubusercontent.com/pygamelib/figlet-to-pygamelib/main/images/doom_preview.png)
 
 And when we play with vertical and horizontal spacing:
 
     figlet-to-pygamelib.py --output-directory dev_tests doom --space-width 3 --horizontal-spacing 3 --vertical-spacing 2
 
 This produces the following output:
-![Command output](images/doom_preview_spacing.png)
+![Command output](https://raw.githubusercontent.com/pygamelib/figlet-to-pygamelib/main/images/doom_preview_spacing.png)
 
 ## Bugs
 
