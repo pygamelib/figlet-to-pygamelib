@@ -9,6 +9,11 @@ The easiest way is to install it with the `pip` Python package manager:
 
 -U is for user install, if you want to install it system wide, omit this switch.
 
+Otherwise clone that repository, and run:
+
+    python3 setup.py install
+
+
 ## Why?
 
 **TL;DR:** Because.
