@@ -1,6 +1,26 @@
 # figlet-to-pygamelib
 A small script to automatically convert Figlet fonts to the Pygamelib's sprite format.
 
+## Install
+
+The easiest way is to install it with the `pip` Python package manager:
+
+    pip install -U figlet-to-pygamelib
+
+-U is for user install, if you want to install it system wide, omit this switch.
+
+## Why?
+
+**TL;DR:** Because.
+
+More? Ok: I am not convinced by the necessity of duplicating all the figlet fonts as part of the pygamelib's assets.
+
+On top of that, some settings of the fonts can work for some artistic purpose and not at all for other. Therefor, I'd
+rather give a tool to easily create any variation of a Figlet font that fits any specific project perfectly than trying
+to average a look and feel that works for everyone.
+
+That being said, I did include some fonts in the pygamelib assets library.
+
 ## Usage
 
 The easy way:
