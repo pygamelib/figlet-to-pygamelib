@@ -131,7 +131,7 @@ config = {
     "vertical_spacing": args.vertical_spacing,
     "fg_color": {"red": 255, "green": 255, "blue": 255},
     "bg_color": None,
-    "glyphs_map": {},
+    "glyphs_map": {"default": "#"},
 }
 
 font_name = args.font_name
