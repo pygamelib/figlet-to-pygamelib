@@ -217,6 +217,11 @@ with open(
 ) as file:
     file.write(readme_tmpl)
 
+with open(
+    f"{output_dir}/pygamelib/assets/fonts/{generated_font_name}/__init__.py", "w"
+) as file:
+    file.write("")
+
 print("done")
 
 if args.preview:
